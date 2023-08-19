@@ -2,15 +2,16 @@ from django.shortcuts import render, reverse, redirect
 from django.http import HttpResponse
 from .models import Advertisements
 from .forms import AdvertisementForm
-
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 def index(request):
     advertisemenets=Advertisements.objects.all()
     context = {'advertisements': advertisemenets}
-    return render(request, 'index.html', context)
+    return render(request, 'advertisements/index.html', context)
 
 def top_sellers(request):
-    return render(request, 'top-sellers.html')
-
+    return render(request, 'advertisements/top-sellers.html')
+@login_required(login_url=reverse_lazy('login'))
 def advertisement_post(request):
     if request.method == 'POST':
         form = AdvertisementForm(request.POST, request.FILES)
@@ -23,13 +24,5 @@ def advertisement_post(request):
     else:
         form = AdvertisementForm()
     context = {'form':form}
-    return render(request, 'advertisement-post.html', context)
+    return render(request, 'advertisements/advertisement-post.html', context)
 
-def register(request):
-    return render(request, 'register.html')
-
-def login(request):
-    return render(request, 'login.html')
-
-def profile(request):
-    return render(request, 'profile.html')
