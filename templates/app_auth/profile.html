@@ -2,12 +2,10 @@
 {% block title %} Профиль {% endblock %}
 {% block profile_active %}active{% endblock %}
 {% block content %}
-<div class="col" style="margin: 50px;"> {% csrf_token %}
+<div class="col" style="margin: 50px;">
   <div class="display-2">
-    <span class="badge bg-primary">Сейчас вы находитесь на сайте под ником {{user}}.</span>
+    <span class="badge bg-primary">Сейчас вы находитесь на сайте под ником {{username}}.</span>
   </div>
 </div>
 <script src="js/bootstrap.bundle.min.js"></script>
-{% endblock %}
-{% block footer %}
 {% endblock %}

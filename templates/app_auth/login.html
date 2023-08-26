@@ -3,14 +3,13 @@
 {% block login_active %}active{% endblock %}
 {% block content %}
   <div class="container">
-    {% if error%}
+    {% if error %}
     <div class="cd-sm-4 offset-4 w-25">
-      <div class="forl-label bg-warning" style="margin: 10px 0px;">
+      <div class="form-label bg-warning" style="margin: 10px 0px;">
         {{error}}
       </div>
     </div>
     {% endif %}
-
   <div class="row">
     <div class="col-8" style="margin: 50px;">
       <div class="display-2">
@@ -44,6 +43,4 @@
     </form>
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
-{% endblock %}
-{% block footer %}
 {% endblock %}

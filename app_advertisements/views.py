@@ -4,10 +4,10 @@ from .models import Advertisements
 from .forms import AdvertisementsForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-def index(request):
-    advertisemenets=Advertisements.objects.all()
-    context = {'advertisements': advertisemenets}
-    return render(request, 'advertisements/index.html', context)
+# def index(request):
+#     advertisemenets=Advertisements.objects.all()
+#     context = {'advertisements': advertisemenets}
+#     return render(request, 'advertisements/index.html', context)
 
 def top_sellers(request):
     return render(request, 'advertisements/top-sellers.html')
@@ -26,3 +26,11 @@ def advertisement_post(request):
     context = {'form':form}
     return render(request, 'advertisements/advertisement-post.html', context)
 
+def index(request):
+    title = request.GET.get('query')
+    if title:
+        advertisements = Advertisements.objects.filter(title=title)
+    else:
+        advertisements = Advertisements.objects.all()
+    contex = {'advertisements':advertisements}
+    return render(request, 'app_advertisements/index.html', contex)
